@@ -1,4 +1,4 @@
-# Given the root of a binary tree, return the inorder traversal of its nodes'
+# Given the root of a binary tree, return the postorder traversal of its nodes'
 # values.
 #
 #
@@ -6,7 +6,7 @@
 #
 #
 # Input: root = [1,null,2,3]
-# Output: [1,3,2]
+# Output: [3,2,1]
 #
 #
 #  Example 2:
@@ -27,14 +27,14 @@
 #  Constraints:
 #
 #
-#  The number of nodes in the tree is in the range [0, 100].
+#  The number of the nodes in the tree is in the range [0, 100].
 #  -100 <= Node.val <= 100
 #
 #
 #
 # Follow up: Recursive solution is trivial, could you do it iteratively?
 #
-#  Related Topics Stack Tree Depth-First Search Binary Tree 👍 13364 👎 778
+#  Related Topics Stack Tree Depth-First Search Binary Tree 👍 6852 👎 190
 
 
 # leetcode submit region begin(Prohibit modification and deletion)
@@ -50,9 +50,9 @@ class TreeNode:
 
 
 class Solution:
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        def inorder(node: TreeNode) -> [int]:
-            return inorder(node.left) + [node.val] + inorder(node.right) if node else []
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        if not root:
+            return []
+        return self.postorderTraversal(root.left) + self.postorderTraversal(root.right) + [root.val]
 
-        return inorder(root)
 # leetcode submit region end(Prohibit modification and deletion)
